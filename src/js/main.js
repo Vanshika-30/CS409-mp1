@@ -18,13 +18,24 @@ function onScroll() {
   const scrollHeight = doc.scrollHeight - doc.clientHeight;
   progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
 
-  let active = 0;
+  let active = sections.length - 1; // default to last section
   const navH = navWrap.getBoundingClientRect().height;
-  const probeY = window.scrollY + navH + 1;
-  sections.forEach((sec, i) => {
-    if (probeY >= sec.offsetTop && probeY < sec.offsetTop + sec.offsetHeight) active = i;
-  });
-  if (window.innerHeight + window.scrollY >= doc.scrollHeight - 1) active = sections.length - 1;
+
+  for (let i = 0; i < sections.length; i++) {
+    const sec = sections[i];
+    const secTop = sec.offsetTop - navH - 5;   // offset for sticky nav
+    const secBottom = secTop + sec.offsetHeight;
+
+    if (window.scrollY >= secTop && window.scrollY < secBottom) {
+      active = i;
+      break;
+    }
+  }
+
+  // Edge case: bottom of page → highlight last link
+  if (window.innerHeight + window.scrollY >= doc.scrollHeight - 1) {
+    active = sections.length - 1;
+  }
 
   navLinks.forEach(l => l.classList.remove('active'));
   if (navLinks[active]) navLinks[active].classList.add('active');
@@ -33,7 +44,25 @@ window.addEventListener('scroll', onScroll);
 window.addEventListener('resize', onScroll);
 window.addEventListener('load', onScroll);
 
-// Modals
+// ===== Smooth Scroll with Offset =====
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href').slice(1);
+    const targetSection = document.getElementById(targetId);
+    const navH = navWrap.getBoundingClientRect().height;
+
+    if (targetSection) {
+      const top = targetSection.offsetTop - navH + 1;
+      window.scrollTo({
+        top: top,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// ===== Modals =====
 document.querySelectorAll('.experience-card').forEach(card => {
   card.addEventListener('click', () => {
     document.getElementById(card.dataset.modal).setAttribute('aria-hidden', 'false');
@@ -109,22 +138,3 @@ document.addEventListener('keydown', e => {
 
 // Initial call to set navbar state
 onScroll();
-
-// Fade-in sections on scroll
-const faders = document.querySelectorAll('section, .card, .slide');
-
-const fadeOptions = {
-  threshold: 0.2,
-  rootMargin: "0px 0px -50px 0px"
-};
-
-const fadeOnScroll = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, fadeOptions);
-
-faders.forEach(el => fadeOnScroll.observe(el));
