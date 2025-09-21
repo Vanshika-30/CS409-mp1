@@ -1,10 +1,11 @@
-// Navbar scroll
+// ===== Navbar Scroll + Scroll Spy =====
 const navWrap = document.querySelector('.nav-wrap');
 const progressBar = document.getElementById('progressBar');
 const sections = [...document.querySelectorAll('section')];
 const navLinks = [...document.querySelectorAll('.nav-links a')];
 
 function onScroll() {
+  // Resize navbar on scroll
   if (window.scrollY > 50) {
     navWrap.classList.add('small');
     navWrap.classList.remove('large');
@@ -13,17 +14,19 @@ function onScroll() {
     navWrap.classList.remove('small');
   }
 
+  // Progress bar
   const doc = document.documentElement;
   const scrollTop = doc.scrollTop;
   const scrollHeight = doc.scrollHeight - doc.clientHeight;
   progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
 
-  let active = sections.length - 1; // default to last section
+  // Scroll spy (highlight active link)
+  let active = sections.length - 1; // default last section
   const navH = navWrap.getBoundingClientRect().height;
 
   for (let i = 0; i < sections.length; i++) {
     const sec = sections[i];
-    const secTop = sec.offsetTop - navH - 5;   // offset for sticky nav
+    const secTop = sec.offsetTop - navH - 5;
     const secBottom = secTop + sec.offsetHeight;
 
     if (window.scrollY >= secTop && window.scrollY < secBottom) {
@@ -32,7 +35,6 @@ function onScroll() {
     }
   }
 
-  // Edge case: bottom of page → highlight last link
   if (window.innerHeight + window.scrollY >= doc.scrollHeight - 1) {
     active = sections.length - 1;
   }
@@ -62,15 +64,20 @@ navLinks.forEach(link => {
   });
 });
 
-// ===== Modals =====
-document.querySelectorAll('.experience-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.getElementById(card.dataset.modal).setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+// ===== Mobile Navbar Toggle =====
+const hamburger = document.getElementById('hamburger');
+const navLinksContainer = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  navLinksContainer.classList.toggle('show');
+});
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navLinksContainer.classList.remove('show');
   });
 });
 
-// Projects carousel
+// ===== Projects Carousel =====
 let projIndex = 0;
 const projSlides = document.getElementById('projectSlides');
 const projTotal = projSlides.children.length;
@@ -87,13 +94,13 @@ document.getElementById('projectPrev').addEventListener('click', () => {
   updateProjects();
 });
 
-// ===== Modal Handling =====
-const expCards = document.querySelectorAll('.experience-card');
+// ===== Modals (Projects) =====
+const projectCards = document.querySelectorAll('.project-card');
 const modals = document.querySelectorAll('.modal');
 const closeBtns = document.querySelectorAll('.close-modal');
 
-// Open modal on card click
-expCards.forEach(card => {
+// Open project modal
+projectCards.forEach(card => {
   card.addEventListener('click', () => {
     const id = card.dataset.modal;
     const modal = document.getElementById(id);
@@ -104,7 +111,7 @@ expCards.forEach(card => {
   });
 });
 
-// Close modal on ❌ click
+// Close modal on ❌
 closeBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     const modal = btn.closest('.modal');
@@ -124,7 +131,7 @@ modals.forEach(modal => {
   }
 });
 
-// Close modal on Esc key
+// Close modal on Esc
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     modals.forEach(modal => {
@@ -136,5 +143,5 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Initial call to set navbar state
+// Initial setup
 onScroll();

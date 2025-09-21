@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vanshika Jain — Portfolio</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
   <!-- Navbar -->
@@ -13,47 +15,56 @@
         <div class="brand-icon">VJ</div>
         <span class="brand-text">Vanshika Jain</span>
       </div>
-      <div class="nav-links">
+      <div class="nav-links" id="navLinks">
         <a href="#hero" class="active">Home</a>
         <a href="#education">Education</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
     </nav>
     <div class="progress"><span id="progressBar"></span></div>
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="hero">
-    <video autoplay muted loop playsinline class="hero-bg">
-      <!-- <source src="assets/hero-bg.mp4" type="video/mp4" /> -->
-    </video>
+  <section id="hero" class="hero parallax">
     <div class="overlay"></div>
     <div class="hero-inner">
       <h1 class="hero-name">VANSHIKA JAIN</h1>
       <p class="hero-sub">SOFTWARE ENGINEER • AI & CLOUD</p>
       <div class="socials hero-socials">
-        <a class="icon icon-mail" href="mailto:jvanshika30@gmail.com"></a>
-        <a class="icon icon-linkedin" href="https://www.linkedin.com/in/vanshika-jain-3019" target="_blank"></a>
-        <a class="icon icon-github" href="https://github.com/Vanshika-30" target="_blank"></a>
+        <a class="icon" href="mailto:jvanshika30@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a class="icon" href="https://www.linkedin.com/in/vanshika-jain-3019" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a class="icon" href="https://github.com/Vanshika-30" target="_blank"><i class="fa-brands fa-github"></i></a>
       </div>
     </div>
   </section>
 
   <!-- Education -->
-  <section id="education">
+  <section id="education" class="parallax">
+    <div class="overlay"></div>
     <div class="container">
       <h2 class="section-title">Education</h2>
       <div class="cards-grid">
         <div class="card accent-left">
           <h3>University of Illinois, Urbana–Champaign</h3>
-          <p>Master of Computer Science — GPA 3.89/4 (Dec 2025)</p>
+          <p><strong>Master of Computer Science</strong></p>
+          <div class="edu-meta">
+            <span>Aug 2024 – Dec 2025</span>
+            <span class="gpa">GPA: 3.89/4</span>
+          </div>
           <p>Coursework: Security, OS, Network Security, Algorithms, DBMS</p>
         </div>
         <div class="card accent-left">
           <h3>Visvesvaraya National Institute of Technology</h3>
-          <p>B.Tech, Computer Science & Engineering — GPA 9.2/10 (May 2022)</p>
+          <p><strong>B.Tech, Computer Science & Engineering</strong></p>
+          <div class="edu-meta">
+            <span>Jul 2018 – May 2022</span>
+            <span class="gpa">GPA: 9.2/10</span>
+          </div>
           <p>Top 1% XII Board (Maharashtra State Scholarship)</p>
         </div>
       </div>
@@ -64,122 +75,105 @@
   <section id="experience">
     <div class="container">
       <h2 class="section-title">Experience</h2>
-      <div class="cards-grid">
-        <div class="card experience-card accent-left" data-modal="exp1">
-          <h3>Amazon Robotics — SDE Intern</h3>
-          <p>May 2025 – Aug 2025</p>
-        </div>
-        <div class="card experience-card accent-left" data-modal="exp2">
-          <h3>Goldman Sachs — Software Engineer</h3>
-          <p>Jul 2022 – Jul 2024</p>
-        </div>
-        <div class="card experience-card accent-left" data-modal="exp3">
-          <h3>Goldman Sachs — SDE Intern</h3>
-          <p>May 2021 – Jul 2021</p>
-        </div>
+      <div class="multi-column">
+            <h3>Amazon Robotics</h3>
+            <h4>Software Development Engineering Intern</h4>
+            <h4>May 2025 – Aug 2025</h4></br>
+            <p>Built GenAI chatbot with AWS Bedrock + Kendra. Reduced incident response time</p>
+
+            <h3>Goldman Sachs</h3>
+            <h4>Software Development Engineer</h4>
+            <h4>Jul 2022 – Jul 2024</h4></br>
+            <p> Migrated apps to AWS (−40% cost). Grafana, Prometheus, Kong API Gateway</p>
+
+            <h3>Goldman Sachs</h3>
+            <h4>Software Development Engineer Intern</h4>
+            <h4>May 2021 – Jul 2021</h4></br>
+            <p>Configured FIX engine (Java, Spring Boot) for financial messaging</p>
       </div>
     </div>
   </section>
 
-  <!-- Modals -->
-<div class="modal" id="exp1" aria-hidden="true">
-  <div class="modal-backdrop"></div>
-  <div class="modal-card">
-    <button class="close-modal">&times;</button>
-    <h3>Amazon Robotics — SDE Intern</h3>
-    <ul>
-      <li>Built GenAI chatbot with AWS Bedrock + Kendra.</li>
-      <li>Reduced incident response time by integrating AWS services.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="modal" id="exp2" aria-hidden="true">
-  <div class="modal-backdrop"></div>
-  <div class="modal-card">
-    <button class="close-modal">&times;</button>
-    <h3>Goldman Sachs — Software Engineer</h3>
-    <ul>
-      <li>Migrated apps to AWS (−40% cost, +75% reliability).</li>
-      <li>Grafana, Prometheus, Kong API Gateway, CI/CD automation.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="modal" id="exp3" aria-hidden="true">
-  <div class="modal-backdrop"></div>
-  <div class="modal-card">
-    <button class="close-modal">&times;</button>
-    <h3>Goldman Sachs — SDE Intern</h3>
-    <ul>
-      <li>Configured FIX engine (Java, Spring Boot) for financial messaging.</li>
-    </ul>
-  </div>
-</div>
-
   <!-- Projects Carousel -->
- <section id="projects">
-  <div class="container">
-    <h2 class="section-title">Projects</h2>
-    <div class="carousel projects-carousel">
-      <div class="slides" id="projectSlides">
-
-        <!-- Project 1 -->
-        <div class="slide">
-          <h3 class="accent-title">Scientific Document Summarizer</h3>
-          <p>
-            Built a summarization system on Heroku for scientific papers using transformers by   
-            integrating Flask API and React frontend with text-to-speech output 
-          </p>
+  <section id="projects" class="parallax">
+    <div class="overlay"></div>
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="carousel projects-carousel">
+        <div class="slides" id="projectSlides">
+          <div class="slide project-card" data-modal="proj1">
+            <div class="accent-title"><i class="fa-solid fa-file-alt project-icon-inline"></i> Scientific Document Summarizer</div>
+            <p>Summarization system using Transformers, Flask, React, and TTS</p>
+          </div>
+          <div class="slide project-card" data-modal="proj2">
+            <div class="accent-title"><i class="fa-solid fa-link project-icon-inline"></i> Blockchain Verification</div>
+            <p>Immutable credential verification using Hyperledger Fabric</p>
+          </div>
+          <div class="slide project-card" data-modal="proj3">
+            <div class="accent-title"><i class="fa-solid fa-microchip project-icon-inline"></i> OS Design</div>
+            <p>Linux kernel modules for CPU utilization & scheduler design</p>
+          </div>
         </div>
-
-        <!-- Project 2 -->
-        <div class="slide">
-          <h3 class="accent-title">Blockchain Verification</h3>
-          <p>
-            Designed immutable credential verification using Hyperledger Fabric.  
-            Built Node.js backend and React frontend for secure and scalable access.
-          </p>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="slide">
-          <h3 class="accent-title">OS Design</h3>
-          <p>
-            Developed Linux kernel modules for CPU utilization tracking.  
-            Implemented a scheduler and tested with error injection utilities.
-          </p>
-        </div>
-
+        <button class="prev" id="projectPrev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="next" id="projectNext"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
-      <button class="prev" id="projectPrev">❮</button>
-      <button class="next" id="projectNext">❯</button>
+    </div>
+  </section>
+
+  <!-- Project Modals -->
+  <div class="modal" id="proj1" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="close-modal">&times;</button>
+      <h3>Scientific Document Summarizer</h3>
+      <ul>
+        <li>Summarization of scientific papers using Transformers</li>
+        <li>Flask backend + React frontend with TTS integration</li>
+        <li>Deployed to Heroku for public access</li>
+      </ul>
     </div>
   </div>
-</section>
 
+  <div class="modal" id="proj2" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="close-modal">&times;</button>
+      <h3>Blockchain Verification</h3>
+      <ul>
+        <li>Immutable credential verification using Hyperledger Fabric</li>
+        <li>Node.js backend with smart contract implementation</li>
+        <li>React-based frontend for credential lookup and validation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal" id="proj3" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="close-modal">&times;</button>
+      <h3>OS Design</h3>
+      <ul>
+        <li>Implemented Linux kernel modules to track CPU utilization</li>
+        <li>Designed scheduler for custom workloads</li>
+        <li>Tested with error injection utilities</li>
+      </ul>
+    </div>
+  </div>
 
   <!-- Contact -->
-  <section id="contact">
-  <div class="container">
-    <h2 class="section-title">Contact</h2>
-    <div class="contact-grid">
-      <a href="mailto:jvanshika30@gmail.com" class="contact-item">
-        <span class="contact-icon icon-mail"></span>
-        <span>Email</span>
-      </a>
-      <a href="https://www.linkedin.com/in/vanshika-jain-3019" target="_blank" class="contact-item">
-        <span class="contact-icon icon-linkedin"></span>
-        <span>LinkedIn</span>
-      </a>
-      <a href="https://github.com/Vanshika-30" target="_blank" class="contact-item">
-        <span class="contact-icon icon-github"></span>
-        <span>GitHub</span>
-      </a>
+  <section id="contact" class="parallax">
+    <div class="overlay"></div>
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <a href="mailto:jvanshika30@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i>Email</a>
+        <a href="https://www.linkedin.com/in/vanshika-jain-3019" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin-in"></i>LinkedIn</a>
+        <a href="https://github.com/Vanshika-30" target="_blank" class="contact-item"><i class="fa-brands fa-github"></i>GitHub</a>
+      </div>
     </div>
-  </div>
-    </section>
+  </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container footer-inner">
       <p>© 2025 Vanshika Jain</p>
