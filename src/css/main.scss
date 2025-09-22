@@ -439,3 +439,17 @@ footer {
   }
 }
 
+/* ================= VIDEO ================= */
+.edu-video {
+  margin-top: 40px;             /* spacing from above */
+  display: flex;
+  justify-content: center;      /* center align */
+}
+
+.edu-video video {
+  max-width: 800px;             /* limit width */
+  width: 100%;                  /* responsive */
+  border-radius: 12px;          /* rounded corners */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4); /* subtle shadow */
+  border: 2px solid var(--line);
+}
