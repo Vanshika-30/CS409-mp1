@@ -12,6 +12,20 @@
   --nav-h-small: 56px;
 }
 
+$hover-scale: 1.05;
+
+@mixin hover-glow($color) {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover {
+    transform: scale($hover-scale);
+    box-shadow: 0 4px 12px rgba($color, 0.4);
+  }
+}
+
+.project-card {
+  @include hover-glow(#3b82f6);
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font: 16px/1.6 system-ui, sans-serif;
@@ -424,3 +438,4 @@ footer {
     transform: translateY(0);
   }
 }
+
