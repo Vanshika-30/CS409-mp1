@@ -441,15 +441,9 @@ footer {
 
 /* ================= VIDEO ================= */
 .edu-video {
-  margin-top: 40px;             /* spacing from above */
-  display: flex;
-  justify-content: center;      /* center align */
-}
-
-.edu-video video {
-  max-width: 800px;             /* limit width */
-  width: 100%;                  /* responsive */
-  border-radius: 12px;          /* rounded corners */
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4); /* subtle shadow */
-  border: 2px solid var(--line);
+  display: block;
+  margin: 40px auto;        /* centers video horizontally */
+  max-width: 80%;           /* responsive width */
+  border-radius: 12px;      /* rounded corners for aesthetics */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* subtle shadow */
 }
