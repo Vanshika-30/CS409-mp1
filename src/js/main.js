@@ -26,7 +26,7 @@ function onScroll() {
 
   for (let i = 0; i < sections.length; i++) {
     const sec = sections[i];
-    const secTop = sec.offsetTop - navH - 5;
+    const secTop = sec.offsetTop - navH;
     const secBottom = secTop + sec.offsetHeight;
 
     if (window.scrollY >= secTop && window.scrollY < secBottom) {
@@ -35,6 +35,7 @@ function onScroll() {
     }
   }
 
+  // Special case: bottom of page → last section
   if (window.innerHeight + window.scrollY >= doc.scrollHeight - 1) {
     active = sections.length - 1;
   }
@@ -43,7 +44,6 @@ function onScroll() {
   if (navLinks[active]) navLinks[active].classList.add('active');
 }
 window.addEventListener('scroll', onScroll);
-window.addEventListener('resize', onScroll);
 window.addEventListener('load', onScroll);
 
 // ===== Smooth Scroll with Offset =====
@@ -55,7 +55,7 @@ navLinks.forEach(link => {
     const navH = navWrap.getBoundingClientRect().height;
 
     if (targetSection) {
-      const top = targetSection.offsetTop - navH + 1;
+      const top = targetSection.offsetTop - navH;
       window.scrollTo({
         top: top,
         behavior: 'smooth'
@@ -78,21 +78,29 @@ navLinks.forEach(link => {
 });
 
 // ===== Projects Carousel =====
-let projIndex = 0;
 const projSlides = document.getElementById('projectSlides');
-const projTotal = projSlides.children.length;
+if (projSlides) {
+  let projIndex = 0;
+  const projTotal = projSlides.children.length;
 
-function updateProjects() {
-  projSlides.style.transform = `translateX(-${projIndex * 100}%)`;
+  function updateProjects() {
+    projSlides.style.transform = `translateX(-${projIndex * 100}%)`;
+  }
+
+  const nextBtn = document.getElementById('projectNext');
+  const prevBtn = document.getElementById('projectPrev');
+
+  if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => {
+      projIndex = (projIndex + 1) % projTotal;
+      updateProjects();
+    });
+    prevBtn.addEventListener('click', () => {
+      projIndex = (projIndex - 1 + projTotal) % projTotal;
+      updateProjects();
+    });
+  }
 }
-document.getElementById('projectNext').addEventListener('click', () => {
-  projIndex = (projIndex + 1) % projTotal;
-  updateProjects();
-});
-document.getElementById('projectPrev').addEventListener('click', () => {
-  projIndex = (projIndex - 1 + projTotal) % projTotal;
-  updateProjects();
-});
 
 // ===== Modals (Projects) =====
 const projectCards = document.querySelectorAll('.project-card');
@@ -107,6 +115,10 @@ projectCards.forEach(card => {
     if (modal) {
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+
+      // move focus to close button for accessibility
+      const closeBtn = modal.querySelector('.close-modal');
+      if (closeBtn) closeBtn.focus();
     }
   });
 });
